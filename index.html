@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GIDICOB | Student Service Queue</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">G</span><span><strong>GIDICOB</strong><small>Student Services</small></span></a>
+  <nav><a class="active" href="#dashboard">Dashboard</a><a href="#queue">Waiting Queue</a><a href="#served">Served Today</a></nav>
+  <span class="status"><i></i> Office Open</span>
+</header>
+
+<main id="dashboard">
+  <section class="welcome">
+    <div><p class="eyebrow">STUDENT SERVICE DESK</p><h1>Good day!</h1><p class="sub">Manage today's student requests.</p></div>
+    <div class="date-box"><span>Today</span><strong id="todayDate"></strong><small id="todayTime"></small></div>
+  </section>
+
+  <section class="stats">
+    <article class="stat"><span class="stat-symbol blue">☷</span><div><p>Waiting</p><strong id="waitingTotal">0</strong></div></article>
+    <article class="stat"><span class="stat-symbol green">✓</span><div><p>Served today</p><strong id="servedTotal">0</strong></div></article>
+    <article class="stat"><span class="stat-symbol purple">◷</span><div><p>Average wait</p><strong id="averageWait">—</strong></div></article>
+  </section>
+
+  <section class="layout">
+    <div class="panel queue-panel" id="queue">
+      <div class="panel-head"><div><h2>Waiting Queue</h2><p>Students currently waiting for assistance</p></div><span class="count-pill" id="queueCount">0 students</span></div>
+      <form id="addForm" class="add-form">
+        <label for="studentName">Student name</label>
+        <div class="input-row"><input id="studentName" type="text" maxlength="70" placeholder="Enter full name" required><button class="primary" type="submit">＋ Add to queue</button></div>
+        <label for="serviceType" class="service-label">Service requested</label>
+        <div class="input-row"><select id="serviceType"><option>Academic Records</option><option>Admissions</option><option>Examinations</option><option>Course Registration</option><option>Fees and Payments</option><option>General Enquiry</option></select><button class="secondary" type="button" id="demoBtn">Add sample entries</button></div>
+      </form>
+      <div class="table-scroll"><table><thead><tr><th>Ticket</th><th>Student</th><th>Service</th><th>Time joined</th><th>Status</th><th></th></tr></thead><tbody id="queueBody"></tbody></table></div>
+      <div class="empty" id="emptyState"><span>☷</span><strong>No students in the queue</strong><p>Add a student when they arrive.</p></div>
+      <div class="panel-foot"><span id="queueFoot">Queue is empty</span><button class="text-button" id="clearBtn" type="button">Clear waiting list</button></div>
+    </div>
+
+    <aside class="side">
+      <article class="panel next-panel">
+        <div class="panel-head"><div><h2>Now Serving</h2><p>Current student at the service desk</p></div><span class="live-dot"></span></div>
+        <div class="now-card"><span class="ticket" id="currentTicket">—</span><h3 id="currentName">No student selected</h3><p id="currentService">Ready for the next student</p></div>
+        <button class="primary serve-button" id="serveBtn" type="button">Call next student →</button>
+        <button class="secondary full" id="finishBtn" type="button">Mark service complete</button>
+      </article>
+      <article class="panel next-up">
+        <div class="panel-head"><div><h2>Next in line</h2><p>Up next for assistance</p></div></div>
+        <div class="next-person"><span class="avatar" id="nextAvatar">—</span><div><strong id="nextName">No one waiting</strong><small id="nextService">Waiting for arrival</small></div></div>
+      </article>
+      <article class="panel" id="served">
+        <div class="panel-head"><div><h2>Recently served</h2><p>Completed requests</p></div></div>
+        <ul class="served-list" id="servedList"><li class="served-empty">No completed requests yet.</li></ul>
+      </article>
+    </aside>
+  </section>
+</main>
+<footer><span>GIDICOB <b>·</b> Student Services</span><span>Queue Desk Management</span></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
